@@ -18,7 +18,7 @@ def main():
             move = random.choice(moves)
             grid[empty[0]][empty[1]] = grid[move[0]][move[1]]
             grid[move[0]][move[1]] = 0
-        with open('randomMethod.txt', 'a') as f:
+        with open('./reports/randomMethod.txt', 'a') as f:
             f.write('steps: ' + str(steps))
             f.write('\n')
             f.write('initial state: ' + str(initialState))
