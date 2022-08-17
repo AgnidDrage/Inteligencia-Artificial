@@ -2,10 +2,11 @@ import random
 import copy
 from eightPuzzle import EightPuzzle
 
+
 def main():
-    
+
     for i in range(50):
-        eightPuzzle = EightPuzzle([3,3], 50)
+        eightPuzzle = EightPuzzle([3, 3], 50)
         goal = eightPuzzle.goal
         grid = eightPuzzle.grid
         initialState = copy.deepcopy(grid)
@@ -27,23 +28,27 @@ def main():
             f.write('\n\n')
 
 # find empty tile
+
+
 def findEmpty(grid):
     for i in range(len(grid)):
         for j in range(len(grid[0])):
             if grid[i][j] == 0:
                 return [i, j]
 
+
 def findMoves(empty, goal):
-        moves = []
-        if empty[0] > 0:
-            moves.append([empty[0]-1, empty[1]])
-        if empty[0] < len(goal)-1:
-            moves.append([empty[0]+1, empty[1]])
-        if empty[1] > 0:
-            moves.append([empty[0], empty[1]-1])
-        if empty[1] < len(goal[0])-1:
-            moves.append([empty[0], empty[1]+1])
-        return moves
+    moves = []
+    if empty[0] > 0:
+        moves.append([empty[0]-1, empty[1]])
+    if empty[0] < len(goal)-1:
+        moves.append([empty[0]+1, empty[1]])
+    if empty[1] > 0:
+        moves.append([empty[0], empty[1]-1])
+    if empty[1] < len(goal[0])-1:
+        moves.append([empty[0], empty[1]+1])
+    return moves
+
 
 if __name__ == "__main__":
     main()
