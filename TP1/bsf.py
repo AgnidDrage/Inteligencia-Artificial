@@ -1,3 +1,5 @@
+from os.path import exists
+from os import mkdir
 import copy
 from eightPuzzle import EightPuzzle
 
@@ -6,33 +8,48 @@ def main():
     eightPuzzle = EightPuzzle([3, 3], 50)
     goal = eightPuzzle.goal
     startGrid = eightPuzzle.grid
-    # startGrid = [[1,2,3], [4,5,6], [7,0,8]]
+    # startGrid = [[1, 2, 3], [4, 5, 6], [7, 0, 8]]
     initialState = copy.deepcopy(startGrid)
+    grid = []
     q = []  # queue
     v = []  # visited
     steps = 0
     q.append(startGrid)
 
-    for grid in q:
+    while grid != goal:
         steps += 1
         print(steps)
-        if grid == goal:
-            break
+        grid = q.pop(0)
         empty = findEmpty(grid)
         moves = findMoves(empty, grid)
         for move in moves:
             newgrid = copy.deepcopy(grid)
             newgrid[empty[0]][empty[1]] = newgrid[move[0]][move[1]]
             newgrid[move[0]][move[1]] = 0
-            q.append(newgrid)
+            if newgrid not in v:
+                q.append(newgrid)
+        v.append(grid)
     print(grid)
-    with open('./reports/bsfMethod.txt', 'a') as f:
-        f.write('steps: ' + str(steps))
-        f.write('\n')
-        f.write('initial state: ' + str(initialState))
-        f.write('\n')
-        f.write('end state: ' + str(grid))
-        f.write('\n\n')
+    if exists('./reports/bsfMethod.txt'):
+        with open('./reports/bsfMethod.txt', 'a') as f:
+            f.write('steps: ' + str(steps))
+            f.write('\n')
+            f.write('initial state: ' + str(initialState))
+            f.write('\n')
+            f.write('end state: ' + str(grid))
+            f.write('\n\n')
+    else:
+        try:
+            mkdir('./reports')
+        except FileExistsError:
+            pass
+        with open('./reports/bsfMethod.txt', 'w') as f:
+            f.write('steps: ' + str(steps))
+            f.write('\n')
+            f.write('initial state: ' + str(initialState))
+            f.write('\n')
+            f.write('end state: ' + str(grid))
+            f.write('\n\n')
 
 
 # find empty tile

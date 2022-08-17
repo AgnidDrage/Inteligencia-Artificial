@@ -1,13 +1,13 @@
 import random
 import copy
 
+
 class EightPuzzle:
-    def __init__(self, matrix=[3,3], mix=50):
+    def __init__(self, matrix=[3, 3], mix=50):
         self.matrix = matrix
         self.mix = mix
         self.goal = self.__generateGrid()
         self.grid = self.__mixedGrid()
-        
 
     def __str__(self):
         return str(self.matrix)
@@ -15,7 +15,8 @@ class EightPuzzle:
     # Create ordered grid
     def __generateGrid(self):
         matrix = self.matrix
-        grid = [[j*matrix[0] + i + 1 for i in range(matrix[0])] for j in range(matrix[1])]
+        grid = [
+            [j*matrix[0] + i + 1 for i in range(matrix[0])] for j in range(matrix[1])]
         grid[-1][-1] = 0
         return grid
 

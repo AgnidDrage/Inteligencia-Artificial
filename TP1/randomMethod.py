@@ -1,3 +1,5 @@
+from os.path import exists
+from os import mkdir
 import random
 import copy
 from eightPuzzle import EightPuzzle
@@ -19,13 +21,27 @@ def main():
             move = random.choice(moves)
             grid[empty[0]][empty[1]] = grid[move[0]][move[1]]
             grid[move[0]][move[1]] = 0
-        with open('./reports/randomMethod.txt', 'a') as f:
-            f.write('steps: ' + str(steps))
-            f.write('\n')
-            f.write('initial state: ' + str(initialState))
-            f.write('\n')
-            f.write('end state: ' + str(grid))
-            f.write('\n\n')
+
+        if exists('./reports/randomMethod.txt'):
+            with open('./reports/randomMethod.txt', 'a') as f:
+                f.write('steps: ' + str(steps))
+                f.write('\n')
+                f.write('initial state: ' + str(initialState))
+                f.write('\n')
+                f.write('end state: ' + str(grid))
+                f.write('\n\n')
+        else:
+            try:
+                mkdir('./reports')
+            except FileExistsError:
+                pass
+            with open('./reports/randomMethod.txt', 'w') as f:
+                f.write('steps: ' + str(steps))
+                f.write('\n')
+                f.write('initial state: ' + str(initialState))
+                f.write('\n')
+                f.write('end state: ' + str(grid))
+                f.write('\n\n')
 
 # find empty tile
 
