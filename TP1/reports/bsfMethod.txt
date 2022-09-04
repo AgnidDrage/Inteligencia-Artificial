@@ -1,0 +1,55 @@
+Excution number: 1
+steps: 18
+initial state: [[1, 8, 0], [5, 4, 2], [7, 6, 3]]
+end state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 2
+steps: 20
+initial state: [[0, 1, 8], [7, 2, 6], [3, 4, 5]]
+end state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 3
+steps: 6
+initial state: [[1, 5, 2], [7, 4, 3], [0, 8, 6]]
+end state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 4
+steps: 6
+initial state: [[0, 2, 3], [1, 8, 5], [4, 7, 6]]
+end state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 5
+steps: 3
+initial state: [[1, 2, 3], [4, 0, 5], [7, 8, 6]]
+end state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 6
+steps: 10
+initial state: [[4, 1, 6], [3, 0, 2], [7, 5, 8]]
+end state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 7
+steps: 12
+initial state: [[1, 8, 2], [4, 0, 6], [7, 5, 3]]
+end state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 8
+steps: 16
+initial state: [[4, 3, 6], [2, 7, 8], [5, 1, 0]]
+end state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 9
+steps: 6
+initial state: [[1, 2, 3], [8, 0, 5], [4, 7, 6]]
+end state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 10
+steps: 20
+initial state: [[5, 3, 1], [8, 0, 2], [7, 4, 6]]
+end state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+=========End of Report=========
+Execution times: 10
+average steps: 11.7
+===============================
+

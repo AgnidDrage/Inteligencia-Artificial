@@ -6,14 +6,15 @@ from eightPuzzle import EightPuzzle
 
 
 def main():
-
-    for i in range(50):
+    executions = 10
+    totalSteps = []
+    for i in range(executions):
+        print("execution number: " + str(i+1))
         eightPuzzle = EightPuzzle([3, 3], 50)
         goal = eightPuzzle.goal
         grid = eightPuzzle.grid
         initialState = copy.deepcopy(grid)
         steps = 0
-        print(i)
         while grid != goal:
             steps += 1
             empty = findEmpty(grid)
@@ -21,6 +22,8 @@ def main():
             move = random.choice(moves)
             grid[empty[0]][empty[1]] = grid[move[0]][move[1]]
             grid[move[0]][move[1]] = 0
+
+        totalSteps.append(steps)
 
         if exists('./reports/randomMethod.txt'):
             with open('./reports/randomMethod.txt', 'a') as f:
@@ -43,7 +46,15 @@ def main():
                 f.write('end state: ' + str(grid))
                 f.write('\n\n')
 
-# find empty tile
+    with open('./reports/randomMethod.txt', 'a') as f:
+        f.write("=========End of Report=========")
+        f.write('\n')
+        f.write("Execution times: " + str(executions))
+        f.write('\n')
+        f.write('average steps: ' + str(sum(totalSteps)/len(totalSteps)))
+        f.write('\n')
+        f.write("===============================")
+        f.write('\n\n')
 
 
 def findEmpty(grid):

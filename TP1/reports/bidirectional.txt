@@ -1,0 +1,65 @@
+Excution number: 1
+steps: 8
+initial state: [[3, 6, 0], [1, 8, 2], [4, 5, 7]]
+common state: [[3, 6, 2], [1, 0, 8], [4, 5, 7]]
+final state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 2
+steps: 12
+initial state: [[1, 8, 3], [7, 4, 6], [0, 2, 5]]
+common state: [[1, 6, 8], [4, 0, 3], [7, 2, 5]]
+final state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 3
+steps: 12
+initial state: [[7, 1, 3], [8, 2, 6], [0, 5, 4]]
+common state: [[7, 6, 1], [2, 0, 3], [8, 5, 4]]
+final state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 4
+steps: 10
+initial state: [[1, 3, 6], [5, 0, 8], [4, 2, 7]]
+common state: [[1, 3, 6], [0, 2, 8], [5, 4, 7]]
+final state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 5
+steps: 10
+initial state: [[4, 1, 6], [7, 0, 2], [5, 3, 8]]
+common state: [[4, 1, 6], [0, 3, 2], [7, 5, 8]]
+final state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 6
+steps: 2
+initial state: [[3, 1, 8], [4, 2, 5], [6, 7, 0]]
+common state: [[3, 1, 8], [4, 2, 0], [6, 7, 5]]
+final state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 7
+steps: 12
+initial state: [[8, 1, 3], [4, 5, 6], [0, 7, 2]]
+common state: [[8, 6, 1], [5, 0, 3], [4, 7, 2]]
+final state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 8
+steps: 12
+initial state: [[4, 1, 3], [2, 8, 5], [0, 7, 6]]
+common state: [[4, 5, 1], [8, 0, 3], [2, 7, 6]]
+final state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 9
+steps: 2
+initial state: [[4, 1, 3], [7, 6, 8], [5, 2, 0]]
+common state: [[4, 1, 3], [7, 6, 0], [5, 2, 8]]
+final state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+Excution number: 10
+steps: 12
+initial state: [[5, 2, 3], [1, 8, 4], [0, 7, 6]]
+common state: [[5, 4, 2], [8, 0, 3], [1, 7, 6]]
+final state: [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+=========End of Report=========
+Execution times: 10
+average steps: 9.2
+===============================
+
