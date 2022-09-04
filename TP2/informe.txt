@@ -1,0 +1,2 @@
+Curiosamente le toma 0 iteraciones conseguir un error menor al 10%, tanto para la compuerta AND como la OR.
+No es capaz de simular la compuerta XOR correctamente, siempre se haya una combinación de bits que falla.
