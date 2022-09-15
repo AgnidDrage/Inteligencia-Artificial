@@ -11,12 +11,13 @@ def main():
     #     [1, 1, 0]
     # ]
     xorTable = [[0,0,0]]
-    
+
     for i in range(1):
         for row in xorTable:
             # input layer
             input[0].processInput([BIAS, row[0], row[1]])
             input[1].processInput([BIAS, row[0], row[1]])
+            print('Input layer output: ', input[0].realOutput, input[1].realOutput)
             # hidden layer
             hidden[0].processInput(
                 [BIAS, input[0].realOutput, input[1].realOutput])
@@ -24,10 +25,11 @@ def main():
                 [BIAS, input[0].realOutput, input[1].realOutput])
             hidden[2].processInput(
                 [BIAS, input[0].realOutput, input[1].realOutput])
+            print('Hidden layer output: ', hidden[0].realOutput, hidden[1].realOutput, hidden[2].realOutput)
             # output layer
             output[0].processInput(
                 [BIAS, hidden[0].realOutput, hidden[1].realOutput, hidden[2].realOutput])
-            print("Real output: ", output[0].realOutput)
+            print("Output layer output: ", output[0].realOutput)
 
 
 def instanciatePerceptrons():

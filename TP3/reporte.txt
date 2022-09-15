@@ -1,0 +1,7 @@
+Las salidas de la primera iteracion, primer registro obtenidas son:
+
+Input layer output:  0.7109495026250039 0.574442516811659
+
+Hidden layer output:  0.7416527920719365 0.3846251672860635 0.5743954951013756
+
+Output layer output:  0.3755041329688033
