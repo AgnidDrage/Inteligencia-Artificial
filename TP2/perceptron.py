@@ -33,15 +33,15 @@ class Perceptron:
         print('Weights: ', self.weights)
 
     def predict(self, inputs):
-        if len(inputs) == 3:
-            c0 = inputs[0] * self.weights[0]
-            c1 = inputs[1] * self.weights[1]
-            c2 = inputs[2] * self.weights[2]
+        if len(inputs) == 2:
+            c0 = 1 * self.weights[0]
+            c1 = inputs[0] * self.weights[1]
+            c2 = inputs[1] * self.weights[2]
             sumVal = c0 + c1 + c2
             return self.__activationFunction(sumVal)
         else:
             raise ValueError(
-                "Inputs must be 3 bits without space, example: 111")
+                "Inputs must be 2 bits without space, example: 11")
 
     def __activationFunction(self, sumVal):
         # if sumVal > 0:
