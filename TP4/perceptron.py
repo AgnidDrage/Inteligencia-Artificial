@@ -3,14 +3,10 @@ import math
 
 
 class Perceptron:
-    def __init__(self, w1, w2, w3):
-        self.w1 = w1
-        self.w2 = w2
-        self.w3 = w3
-        self.weights = [w1, w2, w3]
-        # self.weights = [0, 0, 0]
+    def __init__(self, cantWeights):
+        self.weights = [random.uniform(-1, 1) for i in range(cantWeights)]
         self.inputs = []
-        self.LR = 0.1
+        self.LR = 0.5
         self.error = 0
         self.spectedOutput = 0  # spected output
         self.realOutput = 0  # real output
@@ -18,30 +14,16 @@ class Perceptron:
     def processInput(self, inputs, spectedOutput=0):
         self.inputs = inputs
         self.spectedOutput = spectedOutput
-        c0 = inputs[0] * self.weights[0]
-        c1 = inputs[1] * self.weights[1]
-        c2 = inputs[2] * self.weights[2]
-        sumVal = c0 + c1 + c2
+        sumVal = 0
+        for i in range(len(inputs)):
+            sumVal += inputs[i] * self.weights[i]
         self.realOutput = self.__activationFunction(sumVal)
 
-    def updateWeights(self):
-        self.error = self.spectedOutput - self.realOutput
-        delta = self.LR * self.error
+    def updateWeights(self, delta):
+        soc = self.realOutput * (1-self.realOutput) * delta
         for i in range(len(self.weights)):
-            deltaW = delta * self.inputs[i]
-            self.weights[i] += deltaW
-        print('Weights: ', self.weights)
-
-    def predict(self, inputs):
-        if len(inputs) == 2:
-            c0 = 1 * self.weights[0]
-            c1 = inputs[0] * self.weights[1]
-            c2 = inputs[1] * self.weights[2]
-            sumVal = c0 + c1 + c2
-            return self.__activationFunction(sumVal)
-        else:
-            raise ValueError(
-                "Inputs must be 2 bits without space, example: 11")
+            self.weights[i] += self.LR * self.inputs[i] * soc
+        
 
     def __activationFunction(self, sumVal):
         # if sumVal > 0:
@@ -55,47 +37,28 @@ class Perceptron:
 
 
 class OutputPerceptron:
-    def __init__(self, w1, w2, w3, w4):
-        self.w1 = w1
-        self.w2 = w2
-        self.w3 = w3
-        self.w4 = w4
-        self.weights = [w1, w2, w3, w4]
-        # self.weights = [0, 0, 0]
+    def __init__(self, cantWeights):
+        self.weights = [random.uniform(-1, 1) for i in range(cantWeights + 1)]
         self.inputs = []
-        self.LR = 0.1
+        self.LR = 0.5
         self.error = 0
+        self.delta = 0
         self.spectedOutput = 0  # spected output
         self.realOutput = 0  # real output
 
     def processInput(self, inputs, spectedOutput=0):
         self.inputs = inputs
         self.spectedOutput = spectedOutput
-        c0 = inputs[0] * self.weights[0]
-        c1 = inputs[1] * self.weights[1]
-        c2 = inputs[2] * self.weights[2]
-        c3 = inputs[3] * self.weights[3]
-        sumVal = c0 + c1 + c2 + c3
+        sumVal = 0
+        for i in range(len(inputs)):
+            sumVal += inputs[i] * self.weights[i]
         self.realOutput = self.__activationFunction(sumVal)
 
     def updateWeights(self):
         self.error = self.spectedOutput - self.realOutput
-        delta = self.LR * self.error
+        self.delta = self.realOutput * (1-self.realOutput) * self.error
         for i in range(len(self.weights)):
-            deltaW = delta * self.inputs[i]
-            self.weights[i] += deltaW
-        print('Weights: ', self.weights)
-
-    def predict(self, inputs):
-        if len(inputs) == 2:
-            c0 = 1 * self.weights[0]
-            c1 = inputs[0] * self.weights[1]
-            c2 = inputs[1] * self.weights[2]
-            sumVal = c0 + c1 + c2
-            return self.__activationFunction(sumVal)
-        else:
-            raise ValueError(
-                "Inputs must be 2 bits without space, example: 11")
+            self.weights[i] += self.LR * self.inputs[i] * self.delta 
 
     def __activationFunction(self, sumVal):
         # if sumVal > 0:
