@@ -5,8 +5,9 @@ import math
 class Perceptron:
     def __init__(self, cantWeights):
         self.weights = [random.uniform(-1, 1) for i in range(cantWeights)]
+        self.Hweights = []
         self.inputs = []
-        self.LR = 0.5
+        self.LR = 0.9
         self.error = 0
         self.spectedOutput = 0  # spected output
         self.realOutput = 0  # real output
@@ -39,8 +40,9 @@ class Perceptron:
 class OutputPerceptron:
     def __init__(self, cantWeights):
         self.weights = [random.uniform(-1, 1) for i in range(cantWeights + 1)]
+        self.Hweights = []
         self.inputs = []
-        self.LR = 0.5
+        self.LR = 0.9
         self.error = 0
         self.delta = 0
         self.spectedOutput = 0  # spected output
