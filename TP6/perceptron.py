@@ -1,10 +1,12 @@
+from decimal import Decimal
+import numpy as np
 import random
 import math
 
 
 class Perceptron:
     def __init__(self, cantWeights):
-        self.weights = [random.uniform(-1, 1) for i in range(cantWeights)]
+        self.weights = [random.uniform(-1, 1) for i in range(cantWeights + 1)]
         self.Hweights = []
         self.inputs = []
         self.LR = 0.9
@@ -31,7 +33,9 @@ class Perceptron:
         #     return 1
         # else:
         #     return 0
-        return 1 / (1 + math.e ** (-sumVal))
+        # return 1 / (1 + math.e ** (-sumVal))
+        return 1/(1+np.exp(-sumVal))
+        
 
     def __str__(self):
         return str(self.weights)
@@ -67,7 +71,8 @@ class OutputPerceptron:
         #     return 1
         # else:
         #     return 0
-        return 1 / (1 + math.e ** (-sumVal))
+        # return 1 / (1 + math.e ** (-sumVal))
+        return 1/(1+np.exp(-sumVal))
 
     def __str__(self):
         return str(self.weights)
