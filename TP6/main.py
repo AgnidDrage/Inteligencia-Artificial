@@ -1,8 +1,9 @@
+from operator import le
+from turtle import pos
 from perceptron import Perceptron, OutputPerceptron
 from DatasetInput import DatasetInput
-import numpy as np
 import matplotlib.pyplot as plt
-import copy
+import numpy as np
 
 DATASETPATH = "./Dataset"
 
@@ -11,14 +12,14 @@ def main():
     BIAS = 1
     dataset = DatasetInput(DATASETPATH)
     images = dataset.images
-    errorsA = []
-    errorsB = []
-    epoch = 100
-    layer, outputPerceptron = instanciatePerceptrons(perceptronCount=10, numOfInputs=80*96)
+    errors = [[] for i in range(len(images))]
+    epoch = 1000
+    layer, outputPerceptron = instanciatePerceptrons(perceptronCount=100, numOfInputs=80*96)
     for i in range(epoch):
         print("Epoch: ", i)
         # forward propagation
-        image = images[i % len(images)]
+        index = i % len(images)
+        image = images[index]
         inputs = image[0].flatten().tolist()
         inputs.append(BIAS)
         spectedOutput = image[1]
@@ -29,39 +30,38 @@ def main():
         outputPerceptron.processInput(inputs, spectedOutput)
 
         # backward propagation
-        err = spectedOutput - outputPerceptron.realOutput
-        delta = outputPerceptron.LR * err
-
-        outputPerceptron.Hweights.extend(
-            copy.deepcopy(outputPerceptron.weights))
-        for i in range(len(outputPerceptron.weights)):
-            outputPerceptron.weights[i] += delta * outputPerceptron.inputs[i]
+        outputPerceptron.updateWeights()
+        err = outputPerceptron.error
 
         for i in range(len(layer)):
-            layer[i].Hweights.extend(copy.deepcopy(layer[i].weights))
-            soc = layer[i].realOutput * (1 - layer[i].realOutput) * delta
-            for j in range(len(layer[i].weights)):
-                layer[i].weights[j] += layer[i].LR * soc * layer[i].inputs[j]
+            layer[i].updateWeights(outputPerceptron.delta)
 
         # save errors
-        if spectedOutput == 0:
-            errorsA.append(err)
-        elif spectedOutput == 1:
-            errorsB.append(err)
-
+        errors[index].append(err)
+        
+            
+    # plot errors
+    legend = []
+    for i in range(len(errors)):
+        legend.append("Error " + str(i))
     plt.xlabel('Epoch')
     plt.ylabel('Error')
-    plt.plot(errorsA, label='A')
-    plt.plot(errorsB, label='B')
-    plt.legend()
+    plt.title('Error vs Epoch')
+    for i in range(len(errors)):
+        plt.plot(errors[i])
+    plt.legend(legend)
     plt.show()
 
-    print(predict(layer, outputPerceptron, images[0][0].flatten().tolist()))
 
-def instanciatePerceptrons(perceptronCount=6, numOfInputs=3):
+    print("A predecir: deberia salir 0101")
+    print(predict(layer, outputPerceptron, images[0][0].flatten().tolist()))
+    print(predict(layer, outputPerceptron, images[1][0].flatten().tolist()))
+    print(predict(layer, outputPerceptron, images[2][0].flatten().tolist()))
+    print(predict(layer, outputPerceptron, images[3][0].flatten().tolist()))
+
+def instanciatePerceptrons(perceptronCount=60, numOfInputs=3):
     '''
-        Si perceptronCount < 6, existe riesgo de divergencia de errores en la red.
-        Para perceptronCount > 6, parece siempre converger a 0.
+        Funciona bien para perceptronCount => 60.
     '''
     layer = []
     for i in range(perceptronCount):
@@ -77,7 +77,7 @@ def predict(layer, outputPerceptron, inputs):
     inputs = [i.realOutput for i in layer]
     inputs.append(BIAS)
     outputPerceptron.processInput(inputs)
-    return outputPerceptron.realOutput
+    return round(outputPerceptron.realOutput)
 
 if __name__ == "__main__":
     main()
