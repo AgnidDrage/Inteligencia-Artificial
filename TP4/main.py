@@ -1,6 +1,8 @@
 from perceptron import Perceptron, OutputPerceptron
 import matplotlib.pyplot as plt
 import copy
+import numpy as np
+
 
 def main():
     BIAS = 1
@@ -35,12 +37,12 @@ def main():
         err = spectedOutput - outputPerceptron.realOutput
         delta = outputPerceptron.LR * err
         
-        outputPerceptron.Hweights.extend(copy.deepcopy(outputPerceptron.weights))
+        outputPerceptron.Hweights = np.append(outputPerceptron.Hweights, outputPerceptron.weights)
         for i in range(len(outputPerceptron.weights)):
             outputPerceptron.weights[i] += delta * outputPerceptron.inputs[i]
 
         for i in range(len(layer)):
-            layer[i].Hweights.extend(copy.deepcopy(layer[i].weights))
+            layer[i].Hweights = np.append(layer[i].Hweights, layer[i].weights)
             soc = layer[i].realOutput * (1 - layer[i].realOutput) * delta
             for j in range(len(layer[i].weights)):
                 layer[i].weights[j] += layer[i].LR * soc * layer[i].inputs[j]
