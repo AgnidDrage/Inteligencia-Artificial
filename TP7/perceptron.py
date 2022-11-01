@@ -6,7 +6,7 @@ class Perceptron:
         self.weights = np.array([random.uniform(-1, 1) for i in range(cantWeights + 1)])
         self.Hweights = np.array([])
         self.inputs = np.array([])
-        self.LR = 0.1
+        self.LR = 0.155
         self.error = 0
         self.spectedOutput = 0  # spected output
         self.realOutput = 0  # real output
@@ -21,6 +21,9 @@ class Perceptron:
         soc = self.realOutput * (1-self.realOutput) * delta
         self.weights += self.LR * self.inputs * soc
 
+    def loadWeights(self, weights):
+        self.weights = weights
+
     def __activationFunction(self, sumVal):
         return 1/(1+np.exp(-sumVal))
 
@@ -33,7 +36,7 @@ class OutputPerceptron:
         self.weights = np.array([random.uniform(-1, 1) for i in range(cantWeights + 1)])
         self.Hweights = np.array([])
         self.inputs = np.array([])
-        self.LR = 0.1
+        self.LR = 0.155
         self.error = 0
         self.delta = 0
         self.spectedOutput = 0  # spected output
@@ -55,6 +58,8 @@ class OutputPerceptron:
         self.delta = self.LR * self.error
         self.weights += self.inputs * self.delta
 
+    def loadWeights(self, weights):
+        self.weights = weights
 
     def __activationFunction(self, sumVal):
         return 1/(1+np.exp(-sumVal))
